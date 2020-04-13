@@ -23,5 +23,5 @@ deploy:
 
     # # Specify key_id and secret_key to access the AWS machine
     # These keys have been defined in the project env variable on travis-ci.com
-    acces_key_id: $AWS_ACCES_KEY  
+    access_key_id: $AWS_ACCESS_KEY  
     secret_access_key: $AWS_SECRET_KEY
