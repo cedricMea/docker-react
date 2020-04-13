@@ -2,8 +2,25 @@ sudo: required  # On a besoin d'avoir les droits admin
 services:
     - docker 
 
+
 before_install: # Donner toutes les étapes a faire avant dexecuter les test
     - docker build -t cedricmea/docker-react -f Dockerfile.dev .
 
+# run tests
 script:
     - docker  run -e CI=true cedricmea/docker-react npm run test -- --coverage # -- -- coverage permet de resumer les tests afin de voir le % du code couvert
+
+# deployements
+deploy:
+    provider: elasticbeanstalk
+    region: "eu-west-3"
+    app: "docker-react-machine"
+    env: "DockerReactMachine-env"
+    bucket_name: "elasticbeanstalk-eu-west-3-690056171037" # in S3 services
+    bucket_path: "docker-react-machine"  # Save as app
+    on:
+        branch: master # Deploy when the master branch is updated
+
+    acces_key_id: $AWS_ACCES_KEY
+    secret_access_key:
+        secure: "$AWS_SECRET_KEY"
