@@ -1,0 +1,21 @@
+version: "3"
+services:
+    web:
+        build: 
+            context: ./
+            dockerfile: Dockerfile.dev
+        ports:
+            - "3000:3000"
+        stdin_open: true  # equivalent to -it avec docker run
+        volumes:
+            - /app/node_modules # on ne cherche pas a matcher ce dossier du container sur la machine local 
+            - ./:/app # matcher les files du dossier /app du container au dossier courant local
+    tests:
+        build: 
+            context: ./
+            dockerfile: Dockerfile.dev
+        stdin_open: true  # equivalent to -it avec docker run
+        volumes:
+            - /app/node_modules # on ne cherche pas a matcher ce dossier du container sur la machine local 
+            - ./:/app # matcher les files du dossier /app du container au dossier courant local
+        command: ["npm", "run", "test"]
