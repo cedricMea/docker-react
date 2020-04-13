@@ -1,0 +1,9 @@
+sudo: required  # On a besoin d'avoir les droits admin
+services:
+    - docker 
+
+before_install: #Donner toutes les étapes a faire avant dexecuter les test
+    - docker build -t cedricmea/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run cedricmea/docker-react npm run test -- --coverage # -- -- coverag permet de resumer les tests afin de voir le % du code couvert
