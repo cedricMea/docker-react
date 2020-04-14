@@ -6,7 +6,7 @@
 
 # 1ere phase
 # on commence par renomer cette 1ere phase 
-FROM node:alpine 
+FROM node:alpine as build
 
 WORKDIR /app
 COPY package.json ./
@@ -22,7 +22,7 @@ EXPOSE 80
 # we copy the builder from the builder container to  the nginx container
 # In the nginx container we might pull the builder in  
 # /usr/share/nginx/html
-COPY --from=0 /app/build  /usr/share/nginx/html
+COPY --from=build /app/build  /usr/share/nginx/html
 
 # We dont need to start explicirely this container. The default starter is already 
 # set
