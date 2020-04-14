@@ -16,7 +16,7 @@ deploy:
     region: "eu-west-3"
     app: "docker-react-machine"
     env: "DockerReactMachine-env"
-    bucket_name: "elasticbeanstalk-eu-west-3-690056171037" # in S3 services
+    bucket_name: "elasticbeanstalk-eu-west-3-690056171037" # in S3 services 
     bucket_path: "docker-react-machine"  # Save as app
     on:
         branch: master # Deploy when the master branch is updated
