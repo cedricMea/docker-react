@@ -17,7 +17,8 @@ RUN npm run build
 
 # 2e phase
 FROM nginx
-
+EXPOSE 80 
+ # Elasticbeanstalk va directement mapper le port 
 # we copy the builder from the builder container to  the nginx container
 # In the nginx container we might pull the builder in  
 # /usr/share/nginx/html
